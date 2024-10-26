@@ -1,1 +1,1 @@
-# calorie-counter
+A simple calorie counter page based on a JavaScript project from freeCodeCamp.

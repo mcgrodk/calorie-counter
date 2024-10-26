@@ -1,0 +1,26 @@
+body {
+    background-color: #090C08;
+    color: #B9C6AE;
+    font-weight: bold;
+    font-family: sans-serif;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  fieldset, label, button {
+    margin-top: 1rem;
+  }
+  
+  button {
+    background-color: #757083;
+    border: 1px solid black;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
