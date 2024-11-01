@@ -10,9 +10,21 @@ body {
   h1 {
     text-align: center;
   }
+
+  #budget {
+    margin-left: 5px;
+  }
   
-  fieldset, label, button {
-    margin-top: 1rem;
+  fieldset, label, #results {
+    margin: 1rem 0 1rem;
+  }
+
+  .input-container > * {
+    display: block;
+  }
+
+  .add-entry {
+    margin-bottom: 0.75rem;
   }
   
   button {
@@ -23,4 +35,10 @@ body {
   
   button:hover {
     cursor: pointer;
+  }
+
+  #results {
+    text-align: center;
+    border: 1px solid #B9C6AE;
+    display: none;
   }
