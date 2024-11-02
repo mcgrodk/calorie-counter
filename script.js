@@ -21,14 +21,16 @@ function addEntry() {
     const entryNumber = targetContainer.querySelectorAll('input[type = "text"]').length + 1;
 
     const HTMLstring = `
-    <label for="entry-name">Entry ${entryNumber} Name</label>
-    <input type="text" placeholder = "Entry name">
-    <label for="entry-calories">Entry ${entryNumber} Calories</label>
-    <input type="number"
-    min = "0"
-    id = "${dropdown.value}-${entryNumber}-calories"
-    placeholder = "# of calories"
-    />
+    <div class="user-entry">
+      <label for="entry-name">Entry ${entryNumber} Name</label>
+      <input type="text" placeholder = "Entry name">
+      <label for="entry-calories">Entry ${entryNumber} Calories</label>
+      <input type="number"
+      min = "0"
+      id = "${dropdown.value}-${entryNumber}-calories"
+      placeholder = "# of calories"
+      />
+    </div>
     `; // Add horizontal line here to separate entries for readability?;
     targetContainer.insertAdjacentHTML('beforeend', HTMLstring)
   }
@@ -63,12 +65,27 @@ function calculateCalories() {
     
     const consumedCalories = breakfastCalories + lunchCalories + dinnerCalories + snacksCalories;
     const remainingCalories = (budgetCalories - consumedCalories) + exerciseCalories;
-    
-    console.log(remainingCalories);
+
+    displayResults(budgetCalories, consumedCalories, exerciseCalories, remainingCalories);
+  }
+
+  function displayResults(budgetCalories, consumedCalories, exerciseCalories, remainingCalories) {
     results.style.display = "block";
-    results.textContent = `${budgetCalories} - ${consumedCalories} + ${exerciseCalories} = ${remainingCalories}`;
+    let resultsString = `
+    <span>${remainingCalories} Calories Remaining</span>
+    <div id="results-summary">
+      <span>Calorie Budget: ${budgetCalories} Calories Consumed: 
+      ${consumedCalories} Calories Burned: ${exerciseCalories}</span>
+    </div>
+    `
+
+    results.innerHTML = resultsString;
   }
 
   function clearForm() {
-    
+    budget.value = "";
+    for (let entry of document.querySelectorAll(".user-entry")) { // for-of loop selects all "Entry" divs in fieldsets
+      entry.remove();
+    }
+    results.style.display = "none";
   }
