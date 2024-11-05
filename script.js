@@ -45,8 +45,8 @@ function addEntry() {
     return calories;
 }
 
-function calculateCalories() {
-  
+function calculateCalories(e) {
+    e.preventDefault(); // Prevents "submit" button from actually submitting
     const budgetCalories = budget.value;
     
     // Build nodelists of each category by querySelecting all elements with that ID + inputs with type "number"
@@ -70,15 +70,18 @@ function calculateCalories() {
   }
 
   function displayResults(budgetCalories, consumedCalories, exerciseCalories, remainingCalories) {
+    
     results.style.display = "block";
-    let resultsString = `
-    <span>${remainingCalories} Calories Remaining</span>
-    <div id="results-summary">
-      <span>Calorie Budget: ${budgetCalories} Calories Consumed: 
-      ${consumedCalories} Calories Burned: ${exerciseCalories}</span>
-    </div>
-    `
+    const surplusOrDeficit = remainingCalories < 0 ? 'Surplus': 'Deficit'; // These quote marks must be single to differ from resultsString syntax below
 
+    let resultsString = `
+    <span class="${surplusOrDeficit.toLowerCase()}">${Math.abs(remainingCalories)} 
+    Calorie ${surplusOrDeficit}</span>
+    <hr>
+    <p>Calorie Budget: ${budgetCalories}</p>
+    <p>Calories Consumed: ${consumedCalories}</p>
+    <p>Calories Burned: ${exerciseCalories}</p>
+    `
     results.innerHTML = resultsString;
   }
 
