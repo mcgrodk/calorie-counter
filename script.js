@@ -1,3 +1,4 @@
+const calorieForm = document.querySelector("form");
 const budget = document.querySelector("#budget");
 const breakfast = document.querySelector("#breakfast");
 const lunch = document.querySelector("#lunch");
@@ -6,13 +7,13 @@ const snacks = document.querySelector("#snacks");
 const exercise = document.querySelector("#exercise");
 const dropdown = document.querySelector("#dropdown");
 const btnAdd = document.querySelector("#btn-add");
-const btnCalculate = document.querySelector("#btn-calculate");
 const btnClear = document.querySelector("#btn-clear");
 const results = document.querySelector("#results");
 
 btnAdd.onclick = addEntry;
-btnCalculate.onclick = calculateCalories;
 btnClear.onclick = clearForm;
+// Event listener must be set on form, not submit button, to call calculateCalories function without submitting form
+calorieForm.addEventListener("submit", calculateCalories); 
 
 function addEntry() {
     // Uses string interpolation to target HTML element with the ID of the dropdown menu's value
